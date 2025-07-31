@@ -1,0 +1,15 @@
+{
+    "location": "kleineBinckhorst",
+    "start_time": 0,
+    "end_time": 3600,
+    "use_default_material": true,
+    "trains_given": false,
+    "perform_servicing": false,
+    "number_of_trains": 6,
+    "train_unit_distribution": {
+        "train_unit_types": ["SLT-6", "SLT-4", "VIRM-4", "VIRM-6"],
+        "type_ratio": 0.5,
+        "units_per_composition": [1, 2],
+        "matching_complexity": 0
+    }
+}
