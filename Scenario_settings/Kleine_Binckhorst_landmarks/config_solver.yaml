@@ -1,10 +1,10 @@
 
 LocationPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/location_solver.json"
-ScenarioPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/scenario_solver_0.json"
-PlanPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/scenario_0_plan_5.json"
+ScenarioPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/scenario_solver_3.json"
+PlanPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/scenario_3_plan_2.json"
 Mode: "Standard" 
-DebugLevel: 0
-Seed: 10
+DebugLevel: 2 # 0: none, 1: some, 2: detailed, 3: all
+Seed: 34
 MaxDuration: 600
 
 TabuSearch:
@@ -23,22 +23,3 @@ SimulatedAnnealing:
   Reset: 2000
   Bias: 0.2
   IntensifyOnImprovement: false
-
-DeepLook:
-  TestCases: 0
-  MaxTest: 100
-  EvaluatorInput:
-    Path: "/workspace/robust-rail-evaluator/build/TORS" #../../C++/hello"
-    Mode: "EVAL_AND_STORE" #EVAL_AND_STORE or EVAL
-    PathLocation: "/workspace/robust-rail-solver/ServiceSiteScheduling/database/TUSS-Instance-Generator/scenario_settings/setting_seed"
-    PathScenario: "/workspace/robust-rail-solver/ServiceSiteScheduling/database/TUSS-Instance-Generator/scenario_settings/setting_seed/scenario_evaluator.json"
-    PathPlan: "/workspace/robust-rail-solver/ServiceSiteScheduling/database/TUSS-Instance-Generator/scenario_settings/setting_seed/plan.json"
-    PlanType: "Solver"
-    DepartureDelay: "0"
-  ConversionAndStorage:  
-    PathEvalResult: "/workspace/robust-rail-solver/ServiceSiteScheduling/database/TUSS-Instance-Generator/scenario_settings/setting_seed/Evaluation_Results.txt"
-    PathScenarioEval: "/workspace/robust-rail-solver/ServiceSiteScheduling/database/TUSS-Instance-Generator/scenario_settings/setting_seed"
-  DeterministicPlanning:
-    LookForSeed: false # looking for a seed, so the seed value is modified, if TestCases is 0 and LookForSeed is true the scenario is not modified only the seed value is modified in the
-    DisplaySeed: true
-    Seed: 11298
