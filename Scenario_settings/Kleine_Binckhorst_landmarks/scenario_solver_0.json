@@ -2,7 +2,7 @@
     "in": {
         "trains": [
             {
-                "entryTrackPart": "43",
+                "entryTrackPart": "47",
                 "arrival": "130",
                 "departure": "130",
                 "id": "0",
@@ -22,12 +22,12 @@
                         }
                     }
                 ],
-                "firstParkingTrackPart": "40"
+                "firstParkingTrackPart": "41"
             },
             {
-                "entryTrackPart": "43",
-                "arrival": "952",
-                "departure": "952",
+                "entryTrackPart": "47",
+                "arrival": "1252",
+                "departure": "1252",
                 "id": "1",
                 "members": [
                     {
@@ -45,12 +45,12 @@
                         }
                     }
                 ],
-                "firstParkingTrackPart": "40"
+                "firstParkingTrackPart": "41"
             },
             {
-                "entryTrackPart": "43",
-                "arrival": "902",
-                "departure": "902",
+                "entryTrackPart": "47",
+                "arrival": "1402",
+                "departure": "1402",
                 "id": "2",
                 "members": [
                     {
@@ -68,12 +68,12 @@
                         }
                     }
                 ],
-                "firstParkingTrackPart": "40"
+                "firstParkingTrackPart": "41"
             },
             {
-                "entryTrackPart": "43",
-                "arrival": "653",
-                "departure": "653",
+                "entryTrackPart": "47",
+                "arrival": "453",
+                "departure": "453",
                 "id": "3",
                 "members": [
                     {
@@ -91,16 +91,16 @@
                         }
                     }
                 ],
-                "firstParkingTrackPart": "40"
+                "firstParkingTrackPart": "41"
             }
         ]
     },
     "out": {
         "trainRequests": [
             {
-                "leaveTrackPart": "43",
-                "arrival": "852",
-                "departure": "852",
+                "leaveTrackPart": "47",
+                "arrival": "1152",
+                "departure": "1152",
                 "displayName": "4",
                 "trainUnits": [
                     {
@@ -126,10 +126,10 @@
                         }
                     }
                 ],
-                "lastParkingTrackPart": "40"
+                "lastParkingTrackPart": "41"
             },
             {
-                "leaveTrackPart": "43",
+                "leaveTrackPart": "47",
                 "arrival": "3341",
                 "departure": "3341",
                 "displayName": "5",
@@ -157,7 +157,7 @@
                         }
                     }
                 ],
-                "lastParkingTrackPart": "40"
+                "lastParkingTrackPart": "41"
             }
         ]
     },
