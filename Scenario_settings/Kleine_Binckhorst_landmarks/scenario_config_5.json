@@ -2,6 +2,7 @@
     "location": "kleineBinckhorst",
     "start_time": 0,
     "end_time": 9600,
+    "seed": 105,
     "use_default_material": true,
     "trains_given": false,
     "perform_servicing": false,
@@ -19,7 +20,8 @@
             2,
             3
         ],
-        "matching_complexity": 0.2
+        "instanding_ratio": 0.2,
+        "outstanding_ratio": 0.2
     },
     "gateway": {
         "arrival": [

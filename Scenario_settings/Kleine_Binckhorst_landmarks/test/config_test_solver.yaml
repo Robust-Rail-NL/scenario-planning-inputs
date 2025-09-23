@@ -1,10 +1,10 @@
 
 LocationPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/location_solver.json"
-ScenarioPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/scenario_solver_5.json"
-PlanPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/scenario_5_plan_5.json"
+ScenarioPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/test/scenario_solver_test.json"
+PlanPath: "/workspace/scenario-planning-inputs/Scenario_settings/Kleine_Binckhorst_landmarks/test/scenario_test_plan.json"
 Mode: "Standard" 
 DebugLevel: 2 # 0: none, 1: some, 2: detailed, 3: all
-Seed: 60
+Seed: 22
 MaxDuration: 600
 
 TabuSearch:
