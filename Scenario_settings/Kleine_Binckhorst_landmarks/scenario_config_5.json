@@ -1,12 +1,12 @@
 {
     "location": "kleineBinckhorst",
     "start_time": 0,
-    "end_time": 9600,
+    "end_time": 10800,
     "seed": 105,
     "use_default_material": true,
     "trains_given": false,
     "perform_servicing": false,
-    "number_of_trains": 30,
+    "number_of_trains": 20,
     "train_unit_distribution": {
         "train_unit_types": [
             "SLT-6",
@@ -17,8 +17,7 @@
         "super_type_ratio": 0.5,
         "units_per_composition": [
             1,
-            2,
-            3
+            2
         ],
         "instanding_ratio": 0.2,
         "outstanding_ratio": 0.2
@@ -30,5 +29,6 @@
         "departure": [
             "41"
         ]
-    }
+    },
+    "matching": 0
 }
