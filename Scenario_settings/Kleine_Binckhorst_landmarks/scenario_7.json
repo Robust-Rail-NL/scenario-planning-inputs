@@ -1,114 +1,100 @@
 {
     "in": [
         {
-            "time": "2200",
-            "id": "0",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "13",
-                    "typeDisplayName": "SNG-3",
-                    "tasks": []
-                },
-                {
-                    "id": "17",
-                    "typeDisplayName": "SNG-3",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "2600",
+            "time": "300",
             "id": "1",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "6",
-                    "typeDisplayName": "SLT-4",
+                    "id": "2001",
+                    "typeDisplayName": "SLT-6",
                     "tasks": []
                 },
                 {
-                    "id": "2",
-                    "typeDisplayName": "SLT-4",
+                    "id": "2002",
+                    "typeDisplayName": "SLT-6",
                     "tasks": []
                 }
             ],
+            "canDepartFromAnyTrack": true,
             "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
+            "minimumDuration": "60"
         },
         {
-            "time": "200",
+            "time": "600",
             "id": "2",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "12",
-                    "typeDisplayName": "SLT-6",
-                    "tasks": []
-                },
-                {
-                    "id": "5",
+                    "id": "2003",
                     "typeDisplayName": "SLT-4",
                     "tasks": []
                 }
             ],
+            "canDepartFromAnyTrack": true,
             "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
+            "minimumDuration": "60"
         },
         {
+            "time": "900",
             "id": "3",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "10",
-                    "typeDisplayName": "SLT-4",
+                    "id": "2004",
+                    "typeDisplayName": "SNG-3",
                     "tasks": []
                 },
                 {
-                    "id": "7",
-                    "typeDisplayName": "SLT-6",
+                    "id": "2005",
+                    "typeDisplayName": "SNG-4",
+                    "tasks": []
+                },
+                {
+                    "id": "2006",
+                    "typeDisplayName": "SNG-4",
                     "tasks": []
                 }
             ],
+            "canDepartFromAnyTrack": true,
             "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "time": "0",
-            "canDepartFromAnyTrack": false
+            "minimumDuration": "60"
         },
         {
-            "time": "3000",
+            "time": "1200",
             "id": "4",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "16",
-                    "typeDisplayName": "SNG-4",
+                    "id": "2007",
+                    "typeDisplayName": "SLT-4",
+                    "tasks": []
+                },
+                {
+                    "id": "2008",
+                    "typeDisplayName": "SLT-6",
                     "tasks": []
                 }
             ],
+            "canDepartFromAnyTrack": true,
             "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
+            "minimumDuration": "60"
+        }
+    ],
+    "out": [
         {
-            "time": "4600",
+            "time": "1500",
             "id": "5",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "1",
-                    "typeDisplayName": "SNG-3",
+                    "id": "****",
+                    "typeDisplayName": "SLT-6",
                     "tasks": []
                 }
             ],
@@ -117,19 +103,19 @@
             "canDepartFromAnyTrack": false
         },
         {
-            "time": "3400",
+            "time": "1800",
             "id": "6",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "3",
-                    "typeDisplayName": "SLT-4",
+                    "id": "****",
+                    "typeDisplayName": "SLT-6",
                     "tasks": []
                 },
                 {
-                    "id": "4",
-                    "typeDisplayName": "SLT-6",
+                    "id": "****",
+                    "typeDisplayName": "SLT-4",
                     "tasks": []
                 }
             ],
@@ -138,14 +124,19 @@
             "canDepartFromAnyTrack": false
         },
         {
-            "time": "3600",
+            "time": "2100",
             "id": "7",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "11",
-                    "typeDisplayName": "SLT-6",
+                    "id": "****",
+                    "typeDisplayName": "SNG-4",
+                    "tasks": []
+                },
+                {
+                    "id": "****",
+                    "typeDisplayName": "SNG-4",
                     "tasks": []
                 }
             ],
@@ -154,19 +145,14 @@
             "canDepartFromAnyTrack": false
         },
         {
-            "time": "1600",
+            "time": "2400",
             "id": "8",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "14",
-                    "typeDisplayName": "SNG-3",
-                    "tasks": []
-                },
-                {
-                    "id": "0",
-                    "typeDisplayName": "SNG-3",
+                    "id": "****",
+                    "typeDisplayName": "SLT-6",
                     "tasks": []
                 }
             ],
@@ -175,209 +161,24 @@
             "canDepartFromAnyTrack": false
         },
         {
-            "time": "800",
+            "time": "2700",
             "id": "9",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
                 {
-                    "id": "8",
-                    "typeDisplayName": "SNG-4",
-                    "tasks": []
-                },
-                {
-                    "id": "15",
-                    "typeDisplayName": "SNG-4",
-                    "tasks": []
-                },
-                {
-                    "id": "9",
-                    "typeDisplayName": "SNG-3",
+                    "id": "****",
+                    "typeDisplayName": "SLT-4",
                     "tasks": []
                 }
             ],
             "standingIndex": 1.0,
             "minimumDuration": "60",
             "canDepartFromAnyTrack": false
-        }
-    ],
-    "out": [
+        },
         {
-            "time": "3800",
+            "time": "3000",
             "id": "10",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-6",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-6",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-4",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "5200",
-            "id": "11",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-6",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "3200",
-            "id": "12",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-4",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-4",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "4800",
-            "id": "13",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-6",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-4",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SLT-4",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "5000",
-            "id": "14",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "****",
-                    "typeDisplayName": "SNG-3",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SNG-4",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "5800",
-            "id": "15",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "****",
-                    "typeDisplayName": "SNG-4",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "6000",
-            "id": "16",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "****",
-                    "typeDisplayName": "SNG-3",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SNG-3",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "4400",
-            "id": "17",
-            "sideTrackPart": "47",
-            "parkingTrackPart": "41",
-            "members": [
-                {
-                    "id": "****",
-                    "typeDisplayName": "SNG-3",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SNG-4",
-                    "tasks": []
-                },
-                {
-                    "id": "****",
-                    "typeDisplayName": "SNG-3",
-                    "tasks": []
-                }
-            ],
-            "standingIndex": 1.0,
-            "minimumDuration": "60",
-            "canDepartFromAnyTrack": false
-        },
-        {
-            "time": "5400",
-            "id": "18",
             "sideTrackPart": "47",
             "parkingTrackPart": "41",
             "members": [
