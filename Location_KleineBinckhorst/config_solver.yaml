@@ -1,8 +1,9 @@
 
 LocationPath: "/workspace/scenario-planning-inputs/Location_KleineBinckhorst/location_solver.json"
-ScenarioPath: "/workspace/scenario-planning-inputs/Location_KleineBinckhorst/scenarios/scenario_solver_random_distribution2.json"
-PlanPath: "/workspace/scenario-planning-inputs/Location_KleineBinckhorst/plans/plan_random_distribution2.json"
+ScenarioPath: "/workspace/scenario-planning-inputs/Location_KleineBinckhorst/scenarios/scenario_solver_landmarks6.json"
+PlanPath: "/workspace/scenario-planning-inputs/Location_KleineBinckhorst/plans/scenario_landmarks6_plan_5.json"
 Mode: "Standard"
+TemporaryPlanPath: "/workspace/scenario-planning-inputs/Location_KleineBinckhorst/landmarks_information/tmp_plans/scenario_landmarks6_plan_5"
 DebugLevel: 0
 
 TabuSearch:

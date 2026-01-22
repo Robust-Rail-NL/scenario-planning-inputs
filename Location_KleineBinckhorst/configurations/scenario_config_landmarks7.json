@@ -1,0 +1,140 @@
+{
+    "location": "kleineBinckhorst",
+    "start_time": 0,
+    "end_time": 7200,
+    "seed": 107,
+    "use_default_material": true,
+    "trains_given": true,
+    "perform_servicing": false,
+    "number_of_trains": 5,
+    "custom_train_units": [
+        {
+            "id": "2001",
+            "type": "SLT-6",
+            "services": []
+        },
+        {
+            "id": "2002",
+            "type": "SLT-6",
+            "services": []
+        },
+        {
+            "id": "2003",
+            "type": "SLT-4",
+            "services": []
+        },
+        {
+            "id": "2004",
+            "type": "SNG-3",
+            "services": []
+        },
+        {
+            "id": "2005",
+            "type": "SNG-4",
+            "services": []
+        },
+        {
+            "id": "2006",
+            "type": "SNG-4",
+            "services": []
+        },
+        {
+            "id": "2007",
+            "type": "SLT-4",
+            "services": []
+        },
+        {
+            "id": "2008",
+            "type": "SLT-6",
+            "services": []
+        }
+    ],
+    "custom_trains": [
+        {
+            "id": "1",
+            "members": [
+                "2001",
+                "2002"
+            ],
+            "arrival_time": 300,
+            "arrival_track": 15
+        },
+        {
+            "id": "2",
+            "members": [
+                "2003"
+            ],
+            "arrival_time": 600,
+            "arrival_track": 15
+        },
+        {
+            "id": "3",
+            "members": [
+                "2004",
+                "2005",
+                "2006"
+            ],
+            "arrival_time": 900,
+            "arrival_track": 15
+        },
+        {
+            "id": "4",
+            "members": [
+                "2007",
+                "2008"
+            ],
+            "arrival_time": 1200,
+            "arrival_track": 15
+        },
+        {
+            "id": "5",
+            "member_types": [
+                "SLT-6"
+            ],
+            "departure_time": 1500,
+            "departure_track": 15
+        },
+        {
+            "id": "6",
+            "member_types": [
+                "SLT-6",
+                "SLT-4"
+            ],
+            "departure_time": 1800,
+            "departure_track": 15
+        },
+        {
+            "id": "7",
+            "member_types": [
+                "SNG-4",
+                "SNG-4"
+            ],
+            "departure_time": 2100,
+            "departure_track": 15
+        },
+        {
+            "id": "8",
+            "member_types": [
+                "SLT-6"
+            ],
+            "departure_time": 2400,
+            "departure_track": 15
+        },
+        {
+            "id": "9",
+            "member_types": [
+                "SLT-4"
+            ],
+            "departure_time": 2700,
+            "departure_track": 15
+        },
+        {
+            "id": "10",
+            "member_types": [
+                "SNG-3"
+            ],
+            "departure_time": 3000,
+            "departure_track": 15
+        }
+    ]
+}
