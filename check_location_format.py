@@ -4,9 +4,8 @@ import sys
 import logging
 
 
-def check_format_equivalence(loc_file, solver_loc_file):
-    location = json.load(open(loc_file, "r"))
-    solver_location = json.load(open(solver_loc_file, "r"))
+
+def check_format_equivalence(location, solver_location):
     # Check the track equivalence
     location_tracks_by_id = {t["id"]: t for t in location["trackParts"]}
     solver_tracks_by_id = {t["id"]: t for t in solver_location["trackParts"]}
@@ -130,13 +129,30 @@ if __name__ == "__main__":
         print("%%%%%%%%%%%%%%%%%%%%\nGive the folder of the location (e.g. Location_KleineBinckhorst) to compare its location.json and location_solver.json filenames, possibly specify a second argument the id of the gateway track.\n%%%%%%%%%%%%%%%%%%%%")
         sys.exit(0)
     dirname = sys.argv[1]
+    location_filename = location_solver_filename = None
     if os.path.isdir(dirname):
         if os.path.isfile(os.path.join(dirname, "location.json")):
             location_filename = os.path.join(dirname, "location.json")
+        else:
+            print(f"Could not find {dirname}/location.json.")
+            sys.exit(1)
         if os.path.isfile(os.path.join(dirname, "location_solver.json")):
             location_solver_filename = os.path.join(dirname, "location_solver.json")
+        else:
+            print(f"Could not find {dirname}/location_solver.json.")
+            sys.exit(1)
+    else:
+        print(f"Directory {dirname} not found.")
+        sys.exit(1)
+    try:
+        with open(location_filename, "r") as f:
+            location = json.load(f)
+        with open(location_solver_filename, "r") as f:
+            solver_location = json.load(f)
+    except Exception as e:
+        logging.exception("Error opening location files")
     gateway_track_id = None
-    if len(sys.argv) == 3:
+    if len(sys.argv) >= 3:
         gateway_track_id = sys.argv[2]
     location_json = check_format_equivalence(location_filename, location_solver_filename)
     check_location_file(location_json, dirname, gateway_track_id)
