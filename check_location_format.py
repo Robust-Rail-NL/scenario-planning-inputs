@@ -2,8 +2,6 @@ import os
 import json
 import sys
 import logging
-import networkx as nx
-import matplotlib.pyplot as plt
 
 
 def check_format_equivalence(loc_file, solver_loc_file):
@@ -92,6 +90,13 @@ def check_location_file(location_json, dirname, gateway_track_id=None):
                 logging.error(f"Bumper track {id} must have one track on either side: a {track['aSide']} and b {track['bSide']}")
     if gateway_track_id is not None:
         # TODO fix a simple graph drawing of the tracks starting from the gateway
+        try:
+            import networkx as nx
+            import matplotlib.pyplot as plt
+        except ModuleNotFoundError:
+            logging.critical("Could not import networkx and/or matplotlib.")
+            logging.critical("Please run from an enviroment providing these when supplying a gateway track id.")
+            sys.exit(1)
         graph = nx.DiGraph()
         graph.add_node(int(gateway_track_id), type="Gateway", pos=(0,0), name = track_by_id[int(gateway_track_id)]["name"])
         gateway = track_by_id[int(gateway_track_id)]
@@ -118,10 +123,12 @@ def add_ab_nodes(graph, track, pos, track_by_id):
             print(f"Track {b} at {new_position}")
             graph.add_edge(int(track["id"]), int(b), direction="bSide", pos=new_position)
             add_ab_nodes(graph, track_by_id[int(b)], new_position, track_by_id)
-    
+
 if __name__ == "__main__":
-    print("%%%%%%%%%%%%%%%%%%%%\nGive the folder of the location (e.g. Location_KleineBinckhorst) to compare its location.json and location_solver.json filenames, possibly specify a second argument the id of the gateway track.\n%%%%%%%%%%%%%%%%%%%%")
-    logging.basicConfig(level=logging.WARNING)
+    if len(sys.argv) <= 1:
+        # Print usage and exit.
+        print("%%%%%%%%%%%%%%%%%%%%\nGive the folder of the location (e.g. Location_KleineBinckhorst) to compare its location.json and location_solver.json filenames, possibly specify a second argument the id of the gateway track.\n%%%%%%%%%%%%%%%%%%%%")
+        sys.exit(0)
     dirname = sys.argv[1]
     if os.path.isdir(dirname):
         if os.path.isfile(os.path.join(dirname, "location.json")):
