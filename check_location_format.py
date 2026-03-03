@@ -73,7 +73,7 @@ def check_format_equivalence(location, solver_location):
         if facility["simultaneousUsageCount"] != solver_facility["simultaneousUsageCount"]:
             result.append((logging.ERROR,
                            f"Facility with id {id} has different simultaneousUsageCounts: {facility['simultaneousUsageCount']} vs {solver_facility['simultaneousUsageCount']} in location_solver.json"))
-        if sorted(facility["relatedTrackParts"]) != sorted([int(r) for r in solver_facility["relatedTrackParts"]]):
+        if sorted(int(r) for r in facility["relatedTrackParts"]) != sorted(int(r) for r in solver_facility["relatedTrackParts"]):
             result.append((logging.ERROR,
                            f"Facility with id {id} has different relatedTrackParts: {facility['relatedTrackParts']} vs {solver_facility['relatedTrackParts']} in location_solver.json"))
         for track in facility["relatedTrackParts"]:
