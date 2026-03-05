@@ -19,7 +19,7 @@ Optionally, a `README.md` can be added for a location, as well as a `location.pn
 
 To check whether the two location files are equivalent, you can do
 ```bash
-$ python check_location_format.py Location_Name/location.json Location_Name/location_solver.json
+$ python check_location_format.py Location_Name
 ```
 Currently, the repository holds the following locations
 * [Kleine Binckhorst](./Location_KleineBinckhorst/)
