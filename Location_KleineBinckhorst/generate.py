@@ -56,7 +56,7 @@ for (j, n) in enumerate(number_trains):
                 json.dump(config, open(config_file_name, "w"), indent=4)
                 current_file = os.path.dirname(__file__)
 
-                scenario_name = f"scenario_{n}trains_{m}matching_{end_time}TW_{'_mixed' if mixed_traffic else ''}{'_servicing' if perform_servicing else ''}_instance{i}.json"
+                scenario_name = f"scenario_{end_time}TW{'_mixed' if mixed_traffic else ''}{'_servicing' if perform_servicing else ''}_instance{i}.json"
 
                 # Create instance
                 subprocess.run(['python3', path_to_generator, "-p", current_file, "-c", config_file_name, "-s", os.path.join(scenario_dir, scenario_name)])
