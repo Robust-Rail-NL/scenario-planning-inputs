@@ -2,11 +2,12 @@
 
 ## Context
 
-The pydantic pipeline (generator, hip, tors — all now at `2.0.0-beta.1`, tagged and pushed to
-ghcr.io) runs end-to-end on a single `location.json`. Evaluations were equivalent to the protobuf
-baseline as of the last alpha comparison (see `docs/protobuf-pydantic-comparison.md`); that
-comparison still needs a re-run against the beta images (Phase 3). The remaining work before
-stable 2.0.0 releases falls into four areas:
+The pydantic pipeline (generator, hip, tors) runs end-to-end on a single `location.json`.
+Protobuf-vs-pydantic comparison results are recorded directly in Phase 3 below (the
+standalone `docs/protobuf-pydantic-comparison.md` was retired once that became the
+single source of truth for parity results — see git history if the old alpha-era
+category-by-category diff catalog is ever needed). The remaining work before stable
+2.0.0 releases falls into four areas:
 
 1. **Scenario unification** — the generator currently emits two files per scenario:
    `scenario_*.json` (non-HIP field names, for the evaluator) and `scenario_solver_*.json`
@@ -336,8 +337,10 @@ solver-side debugging session at some point, but out of scope for the schema mig
 - No `scenario_solver_*.json` files produced or consumed ✓
 - `location.json` used throughout; `location_unified.json` and `location_solver.json` retired ✓ (already done on `pydantic` branch)
 
-Update `docs/protobuf-pydantic-comparison.md` with these results once `tors:2.0.0-beta.1`
-is re-pushed and the pipeline is re-run against the real ghcr.io image.
+Results above are from local builds. Once the `hip` solver's pre-existing intermittent
+crash (flagged just above) is fixed and `2.0.0-beta.2` images are built and pushed for
+all three repos, re-run the pipeline against the real ghcr.io images and update this
+section with the confirmed results.
 
 ---
 
@@ -369,6 +372,143 @@ Solver / HIP:
 Evaluator / TORS:
 - Look through git diff with main / dev.
 - See if we can get pyTORS to work?  Probably not.
+- Fix or delete `EngineTest` and `CompatibilityTest` — see Phase 3c, which is
+  blocked on this.
+- **Do a focused session on TORS's own search mode.**  TORS does not only
+  replay and evaluate a plan; it can also generate one itself, and that looks
+  to be what it was originally built for, with plan replay added later.  Worth
+  understanding properly: what the search can actually do, whether it is
+  usable or useful to us, and where else the two modes' assumptions diverge.
+
+  This matters beyond curiosity.  Nearly every evaluator bug found on
+  2026-08-07 was a search-mode primitive behaving wrongly under replay, not a
+  bug in its own right:
+    - `legal_on_parking_track_rule` rejected a movement ending on a
+      non-parking track.  Harmless for the search, which emits step-by-step
+      moves that the rule exempts; fatal for replay, where every movement is a
+      `MultiMove` and a departure's last movement lands on the gateway.
+    - `Wait` runs until the next queued event.  Correct for the search, which
+      has no plan and re-decides at every event; wrong for replay, where it
+      discards the duration the plan supplied and eats the time reserved for
+      whatever follows.
+    - `ArriveActionGenerator` hardcodes a zero duration, so a plan cannot
+      express a train occupying the gateway while it waits for a route in
+      (Robust-Rail-NL/robust-rail-solver#13).
+    - `out_correct_time_rule` demanded an exact departure time that an
+      outStanding request (time 0) could never satisfy, while the generator
+      only offers that exit at the end of the scenario.
+
+  So the two modes share primitives whose contracts only hold in one of them.
+  A survey of where else that is true would probably predict the next round of
+  bugs rather than waiting to trip over them.
+
+---
+
+## Phase 3c — Continuous integration ✓ DONE
+
+Set up CI across all four repos before tagging 2.0.0. The case for doing it now
+rather than after: every defect found on 2026-08-07 had been present in every
+released version, and each one was invisible to the suites that already existed.
+Two of those suites cannot pass at all (see below), which is the sort of thing
+that only stays broken when nothing runs them.
+
+Done 2026-08-08. All four repos now have a workflow, on
+`claude/2026-08-07-replay-fixes` in each, validated through draft PRs into the
+migration branches (solver #15, evaluator #5, generator #10, this repo #7).
+
+### Prerequisite: the two dead-weight evaluator tests ✓ DONE
+
+`EngineTest` and `CompatibilityTest` required `LOCATION_PATH`, `SCENARIO_PATH`
+and `PLAN_PATH` to be exported, and then failed with `map::at` against the
+bundled demo data — whose `scenario.json` still uses the pre-unification field
+names this migration replaced, so they could not have passed even with the
+variables set. Resolved 2026-08-08: `ctest` is now 7/7.
+
+`CompatibilityTest` was rebuilt around a committed fixture
+(`data/Demo/hip_plan_evaluation_test`) covering the HIP plan path the pipeline
+actually runs, and demonstrably catches the `4482fa2` defect. `EngineTest` kept
+only its self-contained scenario-unification case; its two environment-driven
+cases were deleted.
+
+**Coverage this leaves open.** The deleted `EngineTest` "Plan test" was the only
+test naming the cTORS-native plan path — `GetRunResultProto` plus
+`RunResult::CreateRunResult(const Location*, const PBRun&)` — which `main.cpp`
+still reaches via `--plan_type Evaluator`. Nothing was lost in practice, since it
+never ran, but that mode now has no test at all and the pipeline never uses it:
+`run_evaluator.py` always passes `--plan_type Solver`. Decide whether the mode is
+still supported. If it is, it wants a fixture like the HIP one; if it is not,
+retiring it removes a second plan format from the evaluator.
+
+### What each repo runs
+
+| repo | workflow | check |
+|---|---|---|
+| `robust-rail-generator` | `.github/workflows/python.yml` | `pytest` (14); `schema/*.json` still matches `model_json_schema()` |
+| `robust-rail-solver` | `.github/workflows/dotnet.yml` | `csharpier check`; build; no-config smoke run; tests (35) |
+| `robust-rail-evaluator` | `.github/workflows/ctest.yml` | configure, build, `ctest` (7/7) |
+| `scenario-planning-inputs` | `.github/workflows/validate-fixtures.yml` | generator schema freshness (gating); fixture validation (report-only) |
+
+All four trigger on push and pull request against the stable branches and the
+relevant migration branch (`noproto` or `pydantic`), plus `workflow_dispatch`.
+No `claude/**` wildcard, so work on a session branch is validated by opening a
+PR into the migration branch — which is enough, because the `pull_request` event
+runs the workflow from the merge commit, so a workflow added in the PR does run.
+
+`dotnet build` warnings-as-errors remains a separate decision; the solver builds
+with two nullable warnings in `Initial/SimpleHeuristic.cs`.
+
+**The solver's workflow was red before any of this, for a reason worth
+recording.** It had never run on `noproto` — the triggers named only `main` and
+`dev` — but PR #12 into `main` did fire it on 2026-08-03, and it failed in 29s.
+The no-config default run in `Program.cs` had been given an absolute
+`/home/leon/Projects/...` prefix, so it worked on exactly one machine. Fixing
+the triggers alone would have left it red. The paths are relative again, as they
+were on `dev`.
+
+### Schema validation in this repo
+
+`location.json`, `scenarios/*.json` and `plans/*.json` are validated against the
+generator's exported schemas. This closes a real gap: several fixtures have been
+edited by hand — the ID migration and the electrification fix were both bulk
+edits — and nothing checked the result until a tool fell over on it, usually
+with a bad error message.
+
+Two caveats, both encoded in the workflow:
+
+- **The check does not gate yet.** It reports 2 of 18 fixtures valid — the only
+  two that pass are the `location.json` files. That is real drift, not a broken
+  script, and it is wider than the earlier note in this document claimed: it is
+  not confined to `Location_SimpleService`. Every scenario and every plan fails,
+  for three independent reasons:
+  1. **Train-unit ids are strings everywhere.** All 127 of them, in all eight
+     scenarios. The 2026-08-02 `string` → `int` decision below reached the code
+     in all three repos and essentially none of the data.
+  2. **Plans use `memberIDs`, the model says `members`** — and also carry
+     `standingType`, which the unified model dropped. `RailModel` sets
+     `extra="forbid"`, so both are hard rejections. Note the evaluator disagrees
+     in the opposite direction: `Plan.cpp` raises an error calling `members` the
+     *legacy* field and demanding `memberIDs`.
+  3. **`actions/*/trainUnitIds` is `null`** in all 606 actions, where the schema
+     says array. It is never populated by anything.
+
+  Failing the branch on known drift only teaches everyone to ignore the check,
+  so it runs under `continue-on-error` until these are fixed. **Next step for
+  this repo: settle the id-type question below, then (2) and (3), then drop
+  `continue-on-error`.**
+- **Where the schemas come from is still open.** The workflow checks out
+  `robust-rail-generator` at `pydantic` and reads `schema/` from there, which
+  couples the repos and pins a branch name. A copy vendored here would instead
+  go stale in silence, which is worse — a stale schema does not fail, it passes
+  having checked the wrong contract. Publishing the schemas as a release
+  artifact (Phase 2) is the end state. Until then the workflow re-exports them
+  in the generator checkout and fails if they differ, and *that* step is gating.
+
+**`scenario_config_*.json` stays out of scope.** It has no schema. It is
+validated by `check_config.py`, which is a list of presence checks and rejects
+nothing it does not recognise. That is load-bearing: the `intent` blocks added
+to the new configurations rely on unknown keys passing through untouched. If a
+config schema is ever written, it has to permit `intent`, or those
+configurations become invalid.
 
 ---
 
